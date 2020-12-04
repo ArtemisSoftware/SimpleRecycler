@@ -12,7 +12,7 @@ import com.artemissoftware.simplerecyclerview.databinding.ItemMovieBinding
 import kotlinx.android.synthetic.main.item_movie.view.*
 
 
-class MovieListAdapter : ListAdapter<Movie, MovieListAdapter.MovieViewHolder>(){
+class MovieListAdapter : ListAdapter<Movie, MovieListAdapter.MovieViewHolder>(MovieDiffCallback()){
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieViewHolder {
         val binding = ItemMovieBinding.inflate(LayoutInflater.from(parent.context), parent, false)
