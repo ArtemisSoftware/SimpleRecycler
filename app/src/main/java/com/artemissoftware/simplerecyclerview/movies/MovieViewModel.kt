@@ -60,4 +60,18 @@ class MovieViewModel : ViewModel() {
 
     }
 
+
+    fun deleteMovie(position: Int) {
+
+        val movieList = mutableListOf<Movie>()
+
+        mutableLiveData.getValue()?.let {
+            movieList.addAll(it)
+            movieList.removeAt(position)
+        }
+
+        mutableLiveData.setValue(movieList)
+
+    }
+
 }

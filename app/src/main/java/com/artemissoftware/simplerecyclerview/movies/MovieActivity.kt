@@ -9,7 +9,7 @@ import kotlinx.android.synthetic.main.activity_movie.*
 
 import java.util.Random;
 
-class MovieActivity : AppCompatActivity() {
+class MovieActivity : AppCompatActivity(), MovieListAdapter.MovieClickInterface  {
 
     private lateinit var viewModel : MovieViewModel
 
@@ -20,7 +20,7 @@ class MovieActivity : AppCompatActivity() {
 
         viewModel = MovieViewModel()
 
-        val movieListAdapter = MovieListAdapter()
+        val movieListAdapter = MovieListAdapter(this)
         //recyclerView.adapter = movieListAdapter
 
         rcl_movies.apply {
@@ -56,7 +56,9 @@ class MovieActivity : AppCompatActivity() {
         })
     }
 
-
+    override fun onDelete(position: Int) {
+        viewModel.deleteMovie(position);
+    }
 
 
 }
