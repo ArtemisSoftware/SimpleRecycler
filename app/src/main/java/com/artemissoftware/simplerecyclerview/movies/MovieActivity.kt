@@ -1,18 +1,22 @@
 package com.artemissoftware.simplerecyclerview.movies
 
 import android.os.Bundle
-import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.artemissoftware.simplerecyclerview.R
 import kotlinx.android.synthetic.main.activity_movie.*
 
 class MovieActivity : AppCompatActivity() {
 
+    private lateinit var viewModel : MovieViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_movie)
+
+
+        viewModel = MovieViewModel()
 
         val movieListAdapter = MovieListAdapter()
         //recyclerView.adapter = movieListAdapter
@@ -24,7 +28,17 @@ class MovieActivity : AppCompatActivity() {
         }
 
 
-        val movieList = listOf<Movie>(Movie("Captain America", "8"),Movie("Iron Man", "7"), Movie("Thor", "6") )
-        movieListAdapter.submitList(movieList)
+//        val movieList = listOf<Movie>(Movie("Captain America", "8"),Movie("Iron Man", "7"), Movie("Thor", "6") )
+//        movieListAdapter.submitList(movieList)
+
+        viewModel.getMovieList().observe(this, Observer<List<Movie>> {
+                 movieListAdapter.submitList(it)
+        })
     }
+
+//    fun addItem(view: View?) {
+//        val movie =
+//            Movie("Avenger's", "9")
+//        movieViewModel.addMovie(movie)
+//    }
 }
