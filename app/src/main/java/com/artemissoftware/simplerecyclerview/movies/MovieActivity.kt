@@ -7,6 +7,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.artemissoftware.simplerecyclerview.R
 import kotlinx.android.synthetic.main.activity_movie.*
 
+import java.util.Random;
+
 class MovieActivity : AppCompatActivity() {
 
     private lateinit var viewModel : MovieViewModel
@@ -34,6 +36,17 @@ class MovieActivity : AppCompatActivity() {
 
         }
 
+        button_update.setOnClickListener {
+
+            val randomPostion: Int = Random().nextInt(movieListAdapter.getItemCount())
+            val movie: Movie = movieListAdapter.getCurrentList().get(randomPostion)
+
+            val updateMovie = Movie(movie.name, movie.rating)
+
+            updateMovie.id = movie.id
+            updateMovie.name = movie.name + " :updated"
+            viewModel.updateMovie(updateMovie, randomPostion)
+        }
 
 //        val movieList = listOf<Movie>(Movie("Captain America", "8"),Movie("Iron Man", "7"), Movie("Thor", "6") )
 //        movieListAdapter.submitList(movieList)
@@ -42,5 +55,8 @@ class MovieActivity : AppCompatActivity() {
                  movieListAdapter.submitList(it)
         })
     }
+
+
+
 
 }

@@ -44,4 +44,20 @@ class MovieViewModel : ViewModel() {
         mutableLiveData.setValue(movieList)
 
     }
+
+
+    fun updateMovie( newMovie: Movie, position: Int) {
+
+        val movieList = mutableListOf<Movie>()
+
+        mutableLiveData.getValue()?.let {
+            movieList.addAll(it)
+            movieList.removeAt(position)
+            movieList.add(position, newMovie)
+        }
+
+        mutableLiveData.setValue(movieList)
+
+    }
+
 }
