@@ -33,12 +33,15 @@ class MovieViewModel : ViewModel() {
 
 
 
-//    fun addMovie(movie: Movie) {
-//        if (mutableLiveData.getValue() != null) {
-//            val movieList: MutableList<Movie> =
-//                ArrayList(mutableLiveData.getValue())
-//            movieList.add(movie)
-//            mutableLiveData.setValue(movieList)
-//        }
-//    }
+    fun addMovie(movie: Movie) {
+
+        val movieList = mutableListOf<Movie>()
+
+        mutableLiveData.getValue()?.let {
+            movieList.addAll(it)
+        }
+        movieList.add(movie)
+        mutableLiveData.setValue(movieList)
+
+    }
 }

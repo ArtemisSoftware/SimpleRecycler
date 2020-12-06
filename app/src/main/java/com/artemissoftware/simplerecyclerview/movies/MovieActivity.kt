@@ -27,6 +27,13 @@ class MovieActivity : AppCompatActivity() {
             setHasFixedSize(true)
         }
 
+        button_add.setOnClickListener {
+
+            val movie = Movie("Avenger's", "9")
+            viewModel.addMovie(movie)
+
+        }
+
 
 //        val movieList = listOf<Movie>(Movie("Captain America", "8"),Movie("Iron Man", "7"), Movie("Thor", "6") )
 //        movieListAdapter.submitList(movieList)
@@ -36,9 +43,4 @@ class MovieActivity : AppCompatActivity() {
         })
     }
 
-//    fun addItem(view: View?) {
-//        val movie =
-//            Movie("Avenger's", "9")
-//        movieViewModel.addMovie(movie)
-//    }
 }
