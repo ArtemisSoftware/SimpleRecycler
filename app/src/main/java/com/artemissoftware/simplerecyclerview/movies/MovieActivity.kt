@@ -48,11 +48,20 @@ class MovieActivity : AppCompatActivity(), MovieListAdapter.MovieClickInterface 
             viewModel.updateMovie(updateMovie, randomPostion)
         }
 
+
+        button_add_list.setOnClickListener {
+
+            val movieList = listOf<Movie>(Movie("Avenger's", "9"), Movie("Avenger's Endgame", "3"))
+            viewModel.addMovies(movieList)
+        }
+
+
 //        val movieList = listOf<Movie>(Movie("Captain America", "8"),Movie("Iron Man", "7"), Movie("Thor", "6") )
 //        movieListAdapter.submitList(movieList)
 
         viewModel.getMovieList().observe(this, Observer<List<Movie>> {
                  movieListAdapter.submitList(it)
+//                 movieListAdapter.update(it)
         })
     }
 

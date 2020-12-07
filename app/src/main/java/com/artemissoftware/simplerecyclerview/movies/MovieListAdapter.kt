@@ -2,6 +2,7 @@ package com.artemissoftware.simplerecyclerview.movies
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
@@ -9,7 +10,7 @@ import com.artemissoftware.simplerecyclerview.databinding.ItemMovieBinding
 import kotlinx.android.synthetic.main.item_movie.view.*
 
 
-class MovieListAdapter(private val listener : MovieClickInterface) : ListAdapter<Movie, MovieListAdapter.MovieViewHolder>(MovieDiffCallback()){
+class MovieListAdapter(private val listener : MovieClickInterface) : ListAdapter<Movie, MovieListAdapter.MovieViewHolder>(MovieItemDiffCallback()){
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieViewHolder {
         val binding = ItemMovieBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -20,6 +21,16 @@ class MovieListAdapter(private val listener : MovieClickInterface) : ListAdapter
         val currentItem = getItem(position)
         holder.bind(currentItem)
     }
+
+//    fun update(newMovies: List<Movie>) {
+//        val diffCallback = MovieListDiffCallback(currentList, newMovies)
+//        val diffResult = DiffUtil.calculateDiff(diffCallback)
+//
+//        submitList(newMovies)
+//        //currentList.addAll(newMovies)
+//        diffResult.dispatchUpdatesTo(this)
+//    }
+
 
     inner class MovieViewHolder(private val binding: ItemMovieBinding) : ViewHolder(binding.root) {
 

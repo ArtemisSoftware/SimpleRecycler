@@ -26,7 +26,8 @@ class MovieViewModel : ViewModel() {
         val movieList: MutableList<Movie> = ArrayList()
         movieList.add(Movie("Captain America", "8"))
         movieList.add(Movie("Iron Man", "7"))
-        movieList.add(Movie("Thor", "6"))
+        movieList.add(MovieUtil.bestMovie)
+        movieList.add(Movie("222","Terminator", "7"))
         mutableLiveData.value = movieList
     }
 
@@ -41,6 +42,29 @@ class MovieViewModel : ViewModel() {
             movieList.addAll(it)
         }
         movieList.add(movie)
+        mutableLiveData.setValue(movieList)
+
+    }
+
+    fun addMovies(movies: List<Movie>) {
+
+        val movieList = mutableListOf<Movie>()
+        mutableLiveData.value?.let {
+            movieList.addAll(it)
+
+            movieList.addAll(movies)
+
+            //val index = movieList.indexOf(MovieUtil.bestMovie);
+            //val movie = movieList.get(2)
+            movieList.removeAt(3)
+
+            val movie = Movie("222","Terminator", "7")
+            movie.name = movie.name + " Final cut"
+            movieList.set(3,movie)
+
+        }
+
+
         mutableLiveData.setValue(movieList)
 
     }
